@@ -22,34 +22,34 @@ const Blog = () => {
   // 表格参数的控制
   const columns = [
     {
-      title: "序号",
+      title: "num",
       dataIndex: "id",
       width: 100,
       render: (_, record, index) => (index + 1).toString(),
     },
     {
-      title: "标题",
+      title: "title",
       dataIndex: "title",
       key: "title",
     },
     {
-      title: "类别",
+      title: "type",
       dataIndex: "type",
       key: "type",
     },
     {
-      title: "内容",
+      title: "content",
       dataIndex: "content",
       key: "content",
       width: 400,
     },
     {
-      title: "创建时间",
+      title: "createTime",
       key: "createTime",
       render: (record) => moment(record.createTime).format("YYYY-MM-DD"),
     },
     {
-      title: "操作",
+      title: "action",
       key: "action",
       render: (row) => (
         <span>

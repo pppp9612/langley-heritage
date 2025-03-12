@@ -18,7 +18,7 @@ const Home = () => {
   useEffect(() => {
     const userInfo = localStorage.getItem("zhifou-user");
     if (!userInfo) {
-      navigate("/login");
+      navigate("/HomePage");
     }
   }, []);
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ const Home = () => {
   // exit
   const onClick = ({ key }) => {
     userLogout();
-    navigate("/login");
+    navigate("/HomePage");
   };
   return (
     <>
