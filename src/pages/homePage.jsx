@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import sedlec from "../assets/images/sedlec.png";
 import Lachaise from "../assets/images/Lachaise.png";
 import George from "../assets/images/George.png";
+import mission from "../assets/images/mission.jpg";
 
 
 const { Title, Paragraph, Text } = Typography;
@@ -53,8 +54,13 @@ const cemeteryData = [
 ];
 
 const MissionContent = () => (
-  <div style={{ padding: '24px', maxWidth: '1200px', margin: '0 auto' }}>
-    MissionPage
+  <div style={{ padding: '24px', margin: '0 auto' }}>
+    <Title level={2} style={{ textAlign: 'center', marginBottom: '24px' }}>
+      Langley Park Cemetery
+    </Title>
+    <div style={{textAlign: 'center',}}>
+      <Image width={'60%'} src={mission} />
+    </div>
     {/* <Title level={2} style={{ textAlign: 'center', marginBottom: '24px' }}>
       Sacred Spaces of Remembrance
     </Title>
