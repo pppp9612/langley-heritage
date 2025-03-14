@@ -97,16 +97,12 @@ const Blog = () => {
 
   useEffect(() => {
     getBlogList();
-  }, [params]); //监听搜索参数的变化，如果变化了，就重新获取数据
-  // 获取博客数据
+  }, [params]); 
   const getBlogList = async () => {
     const { data } = await blogApi.getBlogList(params);
-    // 博客总数
     setTotal(data.data.total);
-    // 博客列表数据
     setBlogList(data.data.records);
   };
-  // 切换每页页码、跳转页码
   const handlePaginationChange = (newPageNum, newPageSize) => {
     setParams({
       ...params,
@@ -114,36 +110,28 @@ const Blog = () => {
       size: newPageSize,
     });
   };
-  // 判断是否更新
   const [isUpdate, setIsUpdate] = useState(false);
-  // 模态框打开
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // 打开模态框
   const handleOpenUpdateModal = (row) => {
     //将当前行的数据赋值给表单
     form.setFieldsValue(row);
     setIsUpdate(true);
     setIsModalOpen(true);
   };
-  // 删除博客
   const handleDeleteBlog = async (id) => {
     await blogApi.delBlog(id);
     message.success("删除成功");
     getBlogList();
   };
-  // 新增博客 form
   const [form] = Form.useForm();
-  // 打开新增和编辑博客的模态框
   const handleOpenAddModal = () => {
-    form.resetFields(); //每次打开新增窗口时都要清空数据
+    form.resetFields(); 
     setIsUpdate(false);
     setIsModalOpen(true);
   };
-  // 展示总条数
   const showTotal = (total) => {
     return `共 ${total} 条`;
   };
-  // 新增和编辑博客
   const handleAddUpdateBlog = async (blogForm) => {
     const { data } = await blogApi.saveBlog(blogForm);
     if (data.code == 200) {
@@ -156,15 +144,14 @@ const Blog = () => {
   };
   return (
     <div>
-      {/* 操作栏 */}
       <Space style={{ marginBottom: "10px" }}>
         <label>
-          {"选择类别："}
+          {"selectType："}
           <Select
             style={{
               width: 120,
             }}
-            placeholder={"选择类别"}
+            placeholder={"selectType"}
             allowClear
             onChange={(value) => setParams({ ...params, type: value })}
             options={[
@@ -196,11 +183,11 @@ const Blog = () => {
           onChange={(e) => setParams({ ...params, title: e.target.value })}
           style={{ width: "200px" }}
           allowClear
-          placeholder="请输入标题"
+          placeholder="Please enter a title"
           enterButton
         />
         <Button type="primary" onClick={handleOpenAddModal}>
-          新增博客
+        Add blog
         </Button>
       </Space>
       <ConfigProvider locale={zhCN}>
@@ -221,9 +208,8 @@ const Blog = () => {
           scroll={{ y: 540 }}
         />
       </ConfigProvider>
-      {/* 新增编辑博客 */}
       <Modal
-        title={isUpdate ? "编辑博客" : "新增博客"}
+        title={isUpdate ? "edit blog" : "Add blog"}
         open={isModalOpen}
         onCancel={() => setIsModalOpen(false)}
         footer={[]}
@@ -241,14 +227,14 @@ const Blog = () => {
           <Form.Item
             label="标题"
             name="title"
-            rules={[{ required: true, message: "请输入标题" }]}
+            rules={[{ required: true, message: "Please enter a title" }]}
           >
-            <Input placeholder="请输入标题" />
+            <Input placeholder="Please enter a title" />
           </Form.Item>
           <Form.Item
             label="类别"
             name="type"
-            rules={[{ required: true, message: "请选择类别" }]}
+            rules={[{ required: true, message: "selectType" }]}
           >
             <Radio.Group>
               <Radio value={"java"}> java </Radio>
@@ -259,12 +245,12 @@ const Blog = () => {
             </Radio.Group>
           </Form.Item>
           <Form.Item
-            label="内容"
+            label="content"
             name="content"
-            rules={[{ required: true, message: "请输入内容" }]}
+            rules={[{ required: true, message: "Please enter the content" }]}
           >
             <TextArea
-              placeholder="请输入内容"
+              placeholder="Please enter the content"
               autoSize={{
                 minRows: 4,
                 maxRows: 6,

@@ -4,7 +4,6 @@ const instance = axios.create({
   baseURL: 'http://118.89.133.167:8083/zhifou-blog',
   timeout: 5000
 })
-// 添加请求拦截器
 instance.interceptors.request.use((config) => {
   const token = getToken()
   if (token) {
@@ -15,7 +14,6 @@ instance.interceptors.request.use((config) => {
   return Promise.reject(error)
 })
 
-// 添加响应拦截器
 instance.interceptors.response.use((response) => {
   return response
 }, (error) => {

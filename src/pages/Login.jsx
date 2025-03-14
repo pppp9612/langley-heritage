@@ -66,7 +66,7 @@ const Login = () => {
           </Form.Item>
           <Form.Item style={{ textAlign: "center" }}>
             <Button type="primary" htmlType="submit">
-              登录
+              login
             </Button>
           </Form.Item>
         </Form>
